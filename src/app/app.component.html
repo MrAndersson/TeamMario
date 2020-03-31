@@ -1,0 +1,26 @@
+<img src="./assets/MarioDanne.png" style="    height: 300px; position: absolute; left: 15%; transform: rotateZ(-45deg);">
+<div class="container">
+    <div class="box">
+        <img src="./assets/Mario.png">
+        <h3>Today is</h3>
+        <p>{{ todayIs }}</p>
+    </div>
+    <div class="box">
+        <img src="./assets/Luigi.png">
+        <h3>Todays Riddle</h3>
+        <p>{{ riddle }}</p>
+    </div>
+    <div class="box">
+        <img src="./assets/Peach.png" style="transform: scaleX(-1)">
+        <h3>Name day</h3>
+        <p>{{ namesDay }}</p>
+    </div>
+    <div class="box">
+        <img src="./assets/Mushroom.png">
+        <h3>Quotes</h3>
+        <div *ngFor="let q of quotes">
+            <p *ngIf="q.visible">{{ q.quote }}</p>
+        </div>
+    </div>
+</div>
+<img src="./assets/LuigiDanne.png" style="height: 200px; position: absolute; transform: rotateZ(90deg);">

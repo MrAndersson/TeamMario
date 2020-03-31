@@ -1,0 +1,7 @@
+{
+    "/riddle-of-the-day": {
+        "target": "https://www.riddles.com",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}
