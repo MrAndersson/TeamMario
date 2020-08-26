@@ -8,4 +8,35 @@ body
     min-height: 100vh;
     background: #222;
     font-family: 'Ubuntu', sans-serif;
+    overflow: hidden;
+}
+
+span {
+    position: absolute;
+    pointer-events: none;
+    animation: floatingSquare 12s linear infinite;
+    background: white;
+
+    /// BALL
+    // top: 0;
+    // border-radius: 50%;
+    // width: 10px;
+    // height: 10px;
+
+    // &:nth-child(1) {
+    //     height: 100px;
+    //     border-radius: 0%;
+    // }
+}
+
+@keyframes floatingSquare {
+    0%{transform: scale(0) translateY(0) rotate(0deg); opacity: 0;}
+    10%{opacity: 1;}
+    90%{opacity: 1;}
+    100%{transform: scale(1) translateY(-500%) rotate(360deg); opacity: 0;}
+}
+
+@keyframes fallingBall {
+    0%{transform: translateY(0)}
+    100%{transform: translateY(100vh)}
 }

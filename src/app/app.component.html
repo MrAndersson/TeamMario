@@ -1,4 +1,6 @@
-<img src="./assets/MarioDanne.png" style="    height: 300px; position: absolute; left: 15%; transform: rotateZ(-45deg);">
+<section></section>
+<img src="./assets/MarioDanne.png" class="imgMario">
+<img src="./assets/LuigiDanne.png" class="imgLuigi">
 <div class="container">
     <div class="box">
         <img src="./assets/Mario.png">
@@ -19,8 +21,7 @@
         <img src="./assets/Mushroom.png">
         <h3>Quotes</h3>
         <div *ngFor="let q of quotes">
-            <p *ngIf="q.visible">{{ q.quote }}</p>
+        <p *ngIf="q.visible">{{ q.quote }}</p>
         </div>
     </div>
 </div>
-<img src="./assets/LuigiDanne.png" style="height: 200px; position: absolute; transform: rotateZ(90deg);">
