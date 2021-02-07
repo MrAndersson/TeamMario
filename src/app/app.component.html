@@ -2,26 +2,38 @@
 <img src="./assets/MarioDanne.png" class="imgMario">
 <img src="./assets/LuigiDanne.png" class="imgLuigi">
 <div class="container">
-    <div class="box">
-        <img src="./assets/Mario.png">
-        <h3>Today is</h3>
-        <p>{{ todayIs }}</p>
+    <div class="cardMain">
+        <div class="box">
+            <img src="./assets/Mario.png">
+            <h3>Today is</h3>
+            <p>{{ todayIs }}</p>
+        </div>
+        <div class="box">
+            <img src="./assets/Luigi.png">
+            <h3>Quotes</h3>
+            <div *ngFor="let q of quotes">
+                <p *ngIf="q.visible">{{ q.quote }}</p>
+            </div>
+        </div>
+        <div class="box">
+            <img src="./assets/Peach.png" style="transform: scaleX(-1)">
+            <h3>CET</h3>
+            <p>{{ CET }}</p>
+        </div>
+        <div class="box">
+            <img src="./assets/Mushroom.png">
+            <h3>IST</h3>
+            <p>{{ IST }}</p>
+        </div>
     </div>
-    <div class="box">
-        <img src="./assets/Luigi.png">
-        <h3>Todays Riddle</h3>
-        <p>{{ riddle }}</p>
-    </div>
-    <div class="box">
-        <img src="./assets/Peach.png" style="transform: scaleX(-1)">
-        <h3>Name day</h3>
-        <p>{{ namesDay }}</p>
-    </div>
-    <div class="box">
-        <img src="./assets/Mushroom.png">
-        <h3>Quotes</h3>
-        <div *ngFor="let q of quotes">
-        <p *ngIf="q.visible">{{ q.quote }}</p>
+</div>
+
+<div class="container weekDayImages">
+    <div class="row offset-md-2">
+        <div *ngFor="let dummy of [].constructor(7); let i = index">
+            <div class="col" [ngClass]="i === dayOfWeekNumber ? 'active' : 'inactive'">
+                <img src="{{ getDayImageByInteger(i) }}" class="{{ getDaysStringByInteger(i) }}">
+            </div>
         </div>
     </div>
 </div>

@@ -1,4 +1,4 @@
-.container {
+.cardMain {
     width: 1200px;
     height: auto;
     margin: 0 auto;
@@ -54,7 +54,7 @@
             grid-row-start: 2; 
         }
         &:nth-child(4) {
-            background: linear-gradient(45deg, #f05a4f, #f4c030);
+            background: linear-gradient(45deg, #0043ea, #668ef2);
             grid-row-start: 2; 
         }
 
@@ -82,5 +82,25 @@ img {
     transform: rotateZ(90deg);
     top: 5%;
     right: 20%;
-    
 }
+
+.weekDayImages {
+    position: absolute;
+    margin-top: 60px;
+    
+    img {
+        height: 105px;
+    }
+
+    .active {
+        transform: scale(1.20);
+        filter: brightness(.8);
+    }
+    
+    .inactive {
+        opacity: 0.2;
+        transform: scale(.80);
+        filter: brightness(0.1) grayscale(1);
+    }
+}
+
