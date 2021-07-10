@@ -29,3 +29,8 @@ export enum Weekdays {
 	Friday,
 	Saturday
 }
+
+export interface ColorArrayClass {
+	id: string,
+	colors: Array<string>
+}

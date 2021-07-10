@@ -8,7 +8,7 @@ import * as momentTz from "moment-timezone";
 
 import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { MQuote, T, Weekdays } from "./type";
+import { MQuote, T, Weekdays, ColorArrayClass } from "./type";
 
 @Component({
     selector: 'app-root',
@@ -35,29 +35,35 @@ export class AppComponent {
     IST: any;
     CET: any;
 
-    dayOfWeekNumber: number;
+	dayOfWeekNumber: number;
+	dayOfWeekString: string;
 
-    colors: Array<string>;
+	colors: { [day: string]: Array<string> };
 
     constructor(public http: HttpClient) {
         this.quotes = [];
         // const today : Date = new Date();
         // this.calendarApiUrl = `https://api.dryg.net/dagar/v2.1/${today.getFullYear()}/${today.getMonth()+1}/${today.getDate()}`;
         // this.riddleUrl      = 'https://www.riddles.com/riddle-of-the-day';
-        this.colors = [
-            "B70225",
-            "00ff72",
-            "ed55ff",
-            "f4c030",
-            "f05a4f"
-        ];
+        
+        // Default color scheme ["B70225", "00ff72", "ed55ff", "f4c030", "f05a4f"]
+
+		this.colors = { };
+		this.colors.Sunday      = ["ffa76c", "ffdb3b", "8be1dd", "e08153"];     // Daisy
+		this.colors.Monday      = ["FDD50B", "E870A0", "78226D", "0D8129"];     // Wario
+		this.colors.Tuesday     = ["5d23ac", "737c86", "ff9e57", "faf22b"];     // Waluigi
+		this.colors.Wednesday   = ["ff000a", "ffd300", "0024f7", "c6744a"];     // Toad
+		this.colors.Thursday    = ["439c19", "2b4674", "a27059", "fffa03"];     // Luigi
+		this.colors.Friday      = ["FE0002", "0001FC", "FFD987", "6A0400"];     // Mario
+		this.colors.Saturday    = ["fbcae0", "d77a9f", "0269aa", "fef564"];     // Peach
 
         setInterval(() => {
             this.IST = momentTz().tz("Asia/Kolkata").format("HH:mm:ss");
             this.CET = momentTz().tz("Europe/Stockholm").format("HH:mm:ss");
         }, 1000);
 
-		this.dayOfWeekNumber = moment().day("Sunday").day();
+		this.dayOfWeekNumber = moment().day();
+		this.dayOfWeekString = moment().format("dddd");
     }
 
     ngOnInit() {
@@ -94,7 +100,6 @@ export class AppComponent {
         // });
         setInterval(() => {
             this.generateSquare();
-            // this.generateball();
         }, 150);
     }
 
@@ -126,7 +131,7 @@ export class AppComponent {
         // BALL
         var posx = Math.random() * window.innerWidth;
         var posy = Math.random() * window.innerHeight;
-        var colorIndex = Math.floor(Math.random() * this.colors.length);
+        var colorIndex = Math.floor(Math.random() * this.colors[0].length);
         var color = '#' + this.colors[colorIndex];
 
         ball.style.left = posx + 'px';
@@ -152,13 +157,13 @@ export class AppComponent {
         var size = Math.random() * 50;
         var posx = Math.random() * window.innerWidth;
         var posy = Math.random() * window.innerHeight;
-        var colorIndex = Math.floor(Math.random() * this.colors.length);
+        var colorIndex = Math.floor(Math.random() * this.colors[this.dayOfWeekString].length);
 
         square.style.width = 20 + size + 'px';
         square.style.height = 20 + size + 'px';
         square.style.left = posx + 'px';
         square.style.top = posy + 'px';
-        square.style.background = '#' + this.colors[colorIndex];
+        square.style.background = '#' + this.colors[this.dayOfWeekString][colorIndex];
 
         section.appendChild(square);
 
