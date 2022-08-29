@@ -75,11 +75,18 @@ export class AppComponent {
                 visible: i === 0,
                 quote: item.quote
             } as MQuote));
+            
+
+            setInterval(() => {
+                this.http.get<Array<T>>("https://sheetsu.com/apis/v1.0su/2453f9630a26").subscribe(e => {
+                    this.todayIs = e[0].todayIs;
+                });
+            }, 3600000); // 1 Hour
 
 
             setInterval(() => {
                 this.setQuoteVisibility();
-            }, 600000);
+            }, 600000); // 1 Min
         });
         // let calendar = this.http.get<veckodag>(this.calendarApiUrl, { headers: this.httpOptions });
         // let riddle   = this.http.get('https://www.riddles.com/riddle-of-the-day', { headers: this.httpOptions, responseType:'text' });
@@ -118,7 +125,7 @@ export class AppComponent {
                 return (i + 1 !== tmp.length) ? tmp[i + 1] : tmp[0];
             }
         })
-            .filter((item: MQuote) => item);
+        .filter((item: MQuote) => item);
 
         return this.quotes.indexOf(tmp[0]);
     }
